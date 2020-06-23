@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Narrative novel</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icons/favicon.ico') }}"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fonts/font-awesome-4.7.0/css/font-awesome.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fonts/iconic/css/material-design-iconic-font.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/animate/animate.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/css-hamburgers/hamburgers.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/animsition/css/animsition.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/select2/select2.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/daterangepicker/daterangepicker.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='vendor/noui/nouislider.min.css') }}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/util.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
+<!--===============================================================================================-->
+
+</head>
+<body>
+	<div class="container-contact100">
+		<div class="wrap-contact100">
+			<form class="contact100-form validate-form">
+				<span class="contact100-form-title">
+					NarrativeKoGPT2
+				</span>
+				<div class="wrap-input100 validate-input bg1" data-validate="Please Type Start Word">
+					<span class="label-input100">Start Word *</span>
+					<input class="input100" type="text" id="input" placeholder="Enter Start Word" >
+				</div>
+
+			<div class="container-contact100-form-btn">
+				<button id = "ajax_test" class="contact100-form-btn" >
+					<span>
+						Submit
+						<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+					</span>
+				</button>
+			</div>
+				<div class="wrap-contact100-form-range">
+				</div>
+
+					<span class="label-input100">Result</span>
+					<textarea class="input100" id = "submit" placeholder="Your result here..." ></textarea>
+			</form>
+		</div>
+	</div>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script>
+	$('#ajax_test').click(function(){
+		$.ajax({
+			url:'/result',
+			dataType:'json',
+			type:'POST',
+			data:{'input':$('#input').val()},//input 전송
+			success:function(result){ //응답이 돌아왔을 경후 msg 화면 출력
+<!--				alert("result = "+ result);-->
+            	$('#submit').html(result);
+			}
+		});
+		return false;
+	});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js" >
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.js"></script>
+<!--===============================================================================================-->
+	<script type="text/javascript" src="{{ url_for('static', filename='js/sub.js') }}"></script>
+	<script src="{{ url_for('static', filename='vendor/jquery/jquery-3.2.1.min.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='vendor/animsition/js/animsition.min.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='vendor/bootstrap/js/popper.js') }}"></script>
+	<script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='vendor/select2/select2.min.js') }}"></script>
+	<script>
+		$(".js-select2").each(function(){
+			$(this).select2({
+				minimumResultsForSearch: 20,
+				dropdownParent: $(this).next('.dropDownSelect2')
+			});
+
+
+			$(".js-select2").each(function(){
+				$(this).on('select2:close', function (e){
+					if($(this).val() == "Please chooses") {
+						$('.js-show-service').slideUp();
+					}
+					else {
+						$('.js-show-service').slideUp();
+						$('.js-show-service').slideDown();
+					}
+				});
+			});
+		})
+	</script>
+<!--===============================================================================================-->
+
+	<script src="{{ url_for('static', filename='vendor/daterangepicker/moment.min.js') }}"></script>
+	<script src="{{ url_for('static', filename='vendor/daterangepicker/daterangepicker.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+	<script src="{{ url_for('static', filename='vendor/countdowntime/countdowntime.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='vendor/noui/nouislider.min.js') }}"></script>
+<!--===============================================================================================-->
+	<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
